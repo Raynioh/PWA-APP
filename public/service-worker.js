@@ -1,4 +1,4 @@
-const CACHE_NAME = 'notes-app-cache-v1';
+const CACHE_NAME = 'notes-app-cache';
 const URLS_TO_CACHE = [
     '/',
     '/index.html',
