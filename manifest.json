@@ -1,0 +1,21 @@
+{
+    "name": "Notes App",
+    "short_name": "Notes",
+    "description": "",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#4CAF50",
+    "icons": [
+        {
+            "src": "assets/notepad256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "assets/notepad512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
