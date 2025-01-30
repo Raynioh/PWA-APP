@@ -78,3 +78,35 @@ button#record-btn {
 button#save-btn {
     background-color: #4CAF50;
 }
+
+.error-container {
+    text-align: center;
+    margin-top: 50px;
+    font-family: Arial, sans-serif;
+}
+
+.error-container h1 {
+    font-size: 5rem;
+    color: #ff6347;
+}
+
+.error-container p {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.error-container a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    text-decoration: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+}
+
+.error-container a:hover {
+    background-color: #45a049;
+}
+

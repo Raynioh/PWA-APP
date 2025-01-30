@@ -2,9 +2,10 @@ const CACHE_NAME = 'notes-app-cache-v1';
 const URLS_TO_CACHE = [
     '/',
     '/index.html',
+    '/notfound.html',
     '/assets/styles.css',
-    '/app.js',
-    '/manifest.json',
+    '/src/app.js',
+    '/assets/manifest.json',
     '/assets/notepad256.png',
     '/assets/notepad512.png'
 ];

@@ -8,12 +8,12 @@
     "theme_color": "#4CAF50",
     "icons": [
         {
-            "src": "assets/notepad256.png",
+            "src": "notepad256.png",
             "sizes": "256x256",
             "type": "image/png"
         },
         {
-            "src": "assets/notepad512.png",
+            "src": "notepad512.png",
             "sizes": "512x512",
             "type": "image/png"
         }
