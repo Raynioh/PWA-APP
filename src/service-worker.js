@@ -9,7 +9,6 @@ const URLS_TO_CACHE = [
     '/assets/notepad512.png'
 ];
 
-// Install the service worker and cache necessary files
 self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open(CACHE_NAME).then((cache) => {
@@ -18,7 +17,6 @@ self.addEventListener('install', (event) => {
     );
 });
 
-// Fetch from cache if available, otherwise fetch from the network
 self.addEventListener('fetch', (event) => {
     event.respondWith(
         caches.match(event.request).then((cachedResponse) => {
@@ -30,7 +28,6 @@ self.addEventListener('fetch', (event) => {
     );
 });
 
-// Activate service worker and clean up old caches
 self.addEventListener('activate', (event) => {
     const cacheWhitelist = [CACHE_NAME];
     event.waitUntil(
