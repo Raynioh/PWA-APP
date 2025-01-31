@@ -3,6 +3,7 @@ const saveBtn = document.getElementById('save-btn');
 const noteInput = document.getElementById('note-input');
 const noteList = document.getElementById('note-list');
 
+// speech recognition
 if (!('SpeechRecognition' in window || 'webkitSpeechRecognition' in window)) {
     recordBtn.disabled = true;
     alert('Speech Recognition is not supported in this browser.');
@@ -30,6 +31,7 @@ recognition.onresult = function (event) {
     noteInput.value = transcript;
 };
 
+// indexedDB
 const dbPromise = indexedDB.open('notes-db', 1);
 
 dbPromise.onupgradeneeded = function(event) {
@@ -63,6 +65,7 @@ saveBtn.addEventListener('click', () => {
 
         noteInput.value = '';
 
+        // sync
         if ('serviceWorker' in navigator && 'SyncManager' in window) {
             navigator.serviceWorker.ready.then((registration) => {
                 return registration.sync.register('sync-notes');

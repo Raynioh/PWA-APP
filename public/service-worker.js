@@ -10,6 +10,7 @@ const URLS_TO_CACHE = [
   "/assets/notepad512.png",
 ];
 
+// cache
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
@@ -44,6 +45,7 @@ self.addEventListener("activate", (event) => {
   );
 });
 
+// sync
 self.addEventListener("sync", (event) => {
   if (event.tag === "sync-notes") {
     event.waitUntil(syncNotes(() => console.log("Synchronizing!")));
@@ -69,6 +71,7 @@ function syncNotes() {
             resolve();
           })
           .then(() => {
+            // notification
             self.registration.showNotification("Notes Sync", {
               body: "Notes have been successfully synced!",
               icon: "/assets/notepad256.png",
