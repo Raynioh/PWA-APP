@@ -43,3 +43,51 @@ self.addEventListener('activate', (event) => {
         })
     );
 });
+
+self.addEventListener('sync', (event) => {
+    if (event.tag === 'sync-notes') {
+        event.waitUntil(syncNotes());
+    }
+});
+
+function syncNotes() {
+    return new Promise((resolve, reject) => {
+        const dbRequest = indexedDB.open('notes-db', 1);
+
+        dbRequest.onsuccess = function(event) {
+            const db = event.target.result;
+            const transaction = db.transaction(['notes'], 'readonly');
+            const objectStore = transaction.objectStore('notes');
+            const request = objectStore.getAll();
+
+            request.onsuccess = function(event) {
+                const notes = event.target.result;
+                fetch('http://193.198.53.212:5000/notes', {
+                    method: 'POST',
+                    body: JSON.stringify({ notes }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(response => {
+                    if (response.ok) {
+                        resolve();
+                    } else {
+                        reject('Sync failed');
+                    }
+                }).catch(error => {
+                    reject(error);
+                });
+            };
+
+            request.onerror = function(event) {
+                console.log('Request error:', event.target.errorCode);
+                reject(event.target.errorCode);
+            };
+        };
+
+        dbRequest.onerror = function(event) {
+            console.log('IndexedDB error:', event.target.errorCode);
+            reject(event.target.errorCode);
+        };
+    });
+}
