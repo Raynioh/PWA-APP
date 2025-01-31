@@ -8,6 +8,16 @@ if (!('SpeechRecognition' in window || 'webkitSpeechRecognition' in window)) {
     alert('Speech Recognition is not supported in this browser.');
 }
 
+if ('Notification' in window && navigator.serviceWorker) {
+    Notification.requestPermission().then(permission => {
+        if (permission === 'granted') {
+            console.log('Notification permission granted.');
+        } else {
+            console.log('Notification permission denied.');
+        }
+    });
+}
+
 const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
 recognition.lang = 'hr-HR';
 
@@ -20,7 +30,6 @@ recognition.onresult = function (event) {
     noteInput.value = transcript;
 };
 
-// Open IndexedDB
 const dbPromise = indexedDB.open('notes-db', 1);
 
 dbPromise.onupgradeneeded = function(event) {
@@ -58,7 +67,6 @@ saveBtn.addEventListener('click', () => {
 
         noteInput.value = '';
 
-        // Register a sync event
         if ('serviceWorker' in navigator && 'SyncManager' in window) {
             navigator.serviceWorker.ready.then((registration) => {
                 return registration.sync.register('sync-notes');
