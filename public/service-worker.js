@@ -46,7 +46,7 @@ self.addEventListener("activate", (event) => {
 
 self.addEventListener("sync", (event) => {
   if (event.tag === "sync-notes") {
-    event.waitUntil(syncNotes());
+    event.waitUntil(syncNotes(() => console.log("Synchronizing!")));
   }
 });
 
@@ -62,6 +62,7 @@ function syncNotes() {
 
       request.onsuccess = function (event) {
         const notes = event.target.result;
+        console.log(notes);
         // glumi slanje podataka na neki backend
         new Promise((r) => setTimeout(r, 2000))
           .then((response) => {
