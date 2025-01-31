@@ -45,7 +45,8 @@ saveBtn.addEventListener('click', () => {
         const db = dbPromise.result;
         const transaction = db.transaction(['notes'], 'readwrite');
         const objectStore = transaction.objectStore('notes');
-        objectStore.add(noteText);
+        const note = { text: noteText, timestamp: new Date().toISOString() };
+        objectStore.add(note);
 
         transaction.oncomplete = function() {
             displayNotes(db);
