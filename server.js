@@ -16,10 +16,6 @@ app.use((req, res) => {
     res.status(404).sendFile(path.join(__dirname, 'public', 'notfound.html'));
 });
 
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "public", "notfound.html"));
-// });
-
 if (externalUrl) {
   const hostname = "0.0.0.0";
   app.listen(port, hostname, () => {

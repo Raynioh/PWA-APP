@@ -63,7 +63,7 @@ function syncNotes() {
       request.onsuccess = function (event) {
         const notes = event.target.result;
         console.log(notes);
-        // glumi slanje podataka na neki backend
+        // glumi vrijeme slanje podataka na neki backend
         new Promise((r) => setTimeout(r, 2000))
           .then((response) => {
             resolve();
@@ -78,16 +78,6 @@ function syncNotes() {
             reject(error);
           });
       };
-
-      request.onerror = function (event) {
-        console.log("Request error:", event.target.errorCode);
-        reject(event.target.errorCode);
-      };
-    };
-
-    dbRequest.onerror = function (event) {
-      console.log("IndexedDB error:", event.target.errorCode);
-      reject(event.target.errorCode);
     };
   });
 }

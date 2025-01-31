@@ -61,10 +61,6 @@ saveBtn.addEventListener('click', () => {
             displayNotes(db);
         };
 
-        transaction.onerror = function(event) {
-            console.log('Transaction error:', event.target.errorCode);
-        };
-
         noteInput.value = '';
 
         if ('serviceWorker' in navigator && 'SyncManager' in window) {
@@ -90,10 +86,6 @@ function displayNotes(db) {
             noteElement.textContent = note.text;
             noteList.appendChild(noteElement);
         });
-    };
-
-    request.onerror = function(event) {
-        console.log('Request error:', event.target.errorCode);
     };
 }
 
